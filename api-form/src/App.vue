@@ -1,18 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <api-form msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ApiForm from '@/components/ApiForm.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
-  }
+    ApiForm
+  },
 }
 </script>
 

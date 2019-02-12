@@ -1,0 +1,20 @@
+{
+    "apis": {
+        "請求先登録更新": "https://billing-robo.local",
+        "請求情報登録更新": "https://billing-robo.local",
+        "商品登録更新": "https://billing-robo.local"
+    },
+    "a": {
+        "fields": [{
+            "type": "typeA",
+            "values": [
+                "a", "b", "c"
+            ]
+        }, {
+            "type": "typeB",
+            "values": [
+                "1", "2", "3", "4"
+            ]
+        }]
+    }
+}
