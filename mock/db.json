@@ -1,9 +1,22 @@
 {
-    "apis": {
+    "apis_dict": {
         "請求先登録更新": "https://billing-robo.local",
         "請求情報登録更新": "https://billing-robo.local",
         "商品登録更新": "https://billing-robo.local"
     },
+    "apis": [{
+        "key": "billing/bulk_upsert",
+        "name": "請求先登録更新",
+        "url": "http://localhost:3000/a"
+    },{
+        "key": "demand/bulk_upsert",
+        "name": "請求情報登録更新",
+        "url": "http://localhost:3000/a"
+    },{
+        "key": "goods/bulk_upsert",
+        "name": "商品登録更新",
+        "url": "http://localhost:3000/a"
+    }],
     "a": {
         "fields": [{
             "type": "typeA",
