@@ -3,46 +3,43 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const select_api = {
+export default new Vuex.Store({
     state: {
+        namespace: true,
+        /*
+        modules: {
+            select_api
+        },
+        */
         selected: 'xxxxxxxxxxx',
         options: [
             { text: 'item1', value: 'item1' },
             { text: 'item2', value: 'item2' },
             { text: 'item3', value: 'item3' },
-        ]
+        ],
+        apis: [{
+            "key": "billing/bulk_upsert",
+            "name": "請求先登録更新",
+            "url": "http://localhost:3000/a"
+        }, {
+            "key": "demand/bulk_upsert",
+            "name": "請求情報登録更新",
+            "url": "http://localhost:3000/b"
+        }, {
+            "key": "goods/bulk_upsert",
+            "name": "商品登録更新",
+            "url": "http://localhost:3000/c"
+        }],
+        arguments: [],
     },
     getters: {
         getOptions(state, getters, rootState) {
             return state.options;
         }
-    }
-}
-
-/*
-fetch('http://localhost:3000/apis')
-    .then(res => res.json())
-    .then(res => {select_api.state.apis = res})
-*/
-
-
-/** 
- * new Vuexの後にresponseが来ると、
- * componentからは変更後のstateを後から取りに行かなければならない？
- * ここは非同期じゃなくて、全部読み込んでから処理を開始したい
- */
-fetch('http://localhost:3000/apis')
-    .then(res => res.json())
-    .then(res => {
-        console.log(res)
-        select_api.state.apis = res
-    })
-
-console.log(select_api.state)
-
-export default new Vuex.Store({
-    namespace: true,
-    modules: {
-        select_api
     },
+    mutations: {
+        setArguments(state, payload) {
+            state.arguments = payload.arguments;
+        }
+    }
 })

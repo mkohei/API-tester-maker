@@ -1,32 +1,60 @@
 {
-    "apis_dict": {
-        "請求先登録更新": "https://billing-robo.local",
-        "請求情報登録更新": "https://billing-robo.local",
-        "商品登録更新": "https://billing-robo.local"
-    },
     "apis": [{
         "key": "billing/bulk_upsert",
         "name": "請求先登録更新",
         "url": "http://localhost:3000/a"
-    },{
+    }, {
         "key": "demand/bulk_upsert",
         "name": "請求情報登録更新",
-        "url": "http://localhost:3000/a"
-    },{
+        "url": "http://localhost:3000/b"
+    }, {
         "key": "goods/bulk_upsert",
         "name": "商品登録更新",
-        "url": "http://localhost:3000/a"
+        "url": "http://localhost:3000/c"
     }],
     "a": {
-        "fields": [{
-            "type": "typeA",
+        "key": "billing/bulk_upsert",
+        "arguments": [{
+            "name": "argA",
+            "type": "text"
+        }, {
+            "name": "argAA",
+            "type": "text"
+        }]
+    },
+    "b": {
+        "key": "demand/bulk_upsert",
+        "arguments": [{
+            "name": "argB",
+            "type": "text"
+        }, {
+            "name": "argBB",
+            "type": "select",
             "values": [
-                "a", "b", "c"
+                { "value": "value1", "content": "content1" }
+            ]
+        }]
+    },
+    "c": {
+        "key": "goods/bulk_upsert",
+        "arguments": [{
+            "name": "argC",
+            "type": "text"
+        }, {
+            "name": "argCC",
+            "type": "radio",
+            "values": [
+                { "value": "value1", "content": "content1" },
+                { "value": "value2", "content": "content2" },
+                { "value": "value3", "content": "content3" }
             ]
         }, {
-            "type": "typeB",
+            "name": "argCCC",
+            "type": "select",
             "values": [
-                "1", "2", "3", "4"
+                { "value": "value1", "content": "content1" },
+                { "value": "value2", "content": "content2" },
+                { "value": "value3", "content": "content3" }
             ]
         }]
     }

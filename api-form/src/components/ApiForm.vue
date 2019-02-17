@@ -7,6 +7,7 @@
 
 <script>
 import SelectApi from '@/components/modules/SelectApi'
+import ArgumentItem from '@/components/modules/ArgumentItem'
 import axios from 'axios'
 
 export default {
@@ -15,7 +16,8 @@ export default {
     msg: String
   },
   components: {
-    SelectApi
+    SelectApi,
+    ArgumentItem
   }
 }
 </script>

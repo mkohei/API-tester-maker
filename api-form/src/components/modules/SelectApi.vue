@@ -1,30 +1,39 @@
 <template>
     <div>
         <select v-model="selected">
-            <!-- eslint-disable-next-line -->        
-            <option v-for='option in options' v-bind:value="option.value">
-                {{ option.text }}
-            </option>
-        </select>
-        <p>{{ selected }} = {{ selected2 }}</p>
-
-        <hr>
-
-        <select v-model="selected">
             <option v-for="api in apis" v-bind:value="api.url">
                 {{ api.name }}   |   {{ api.key }}
             </option>
         </select>
 
+        <p>{{ this.arguments }}</p>
+
         <hr>
 
-        <p>{{ getApiConfigs }}</p>
+        <table>
+            <!-- head -->
+            <tr>
+                <th> Argument </th>
+                <th> </th>
+                <th> Value </th>
+            </tr>
+            <!-- body -->
+            <tbody v-for="(arg, index) in this.arguments">
+                <argument-item v-bind:index="index"></argument-item>
+            </tbody>
+        </table>
+
+
     </div>
 </template>
 
 <script>
 import { mapGetters, mapState } from 'vuex'
 import store from '@/store'
+import axios from 'axios'
+
+import ArgumentItem from '@/components/modules/ArgumentItem'
+
 
 export default {
     name: 'SelectApi',
@@ -33,30 +42,33 @@ export default {
     },
     data() {
         return {
-            selected: store.state.select_api.selected,
-            // storeにあるstateから持ってきたい
-            // 最終はfetchとかでjsonから
-            options: store.state.select_api.options,
-            selected2: store.state.select_api.selected,
-            apis: store.state.select_api.apis,
-
-            /**
-             * formm全体を1componentとするのであれば
-             * とりあえずlocalでそれぞれの情報を持っていて...
-             * そもそもそれなら、全体で共有するタイミングがないな...
-             * あー,結果とか？
-             */
+            selected: store.state.selected,
+            options: store.state.ptions,
+            selected2: store.state.selected,
+            apis: store.state.apis,
+            response: '',
+            arguments: store.state.arguments,
+            arguments2: store.state.arguments,
         }
     },
-    computed: {
-        getApiConfigs: function() {
-            fetch(this.selected)
-                .then(res => res.json)
+    watch: {
+        selected: function() {
+            console.log("[wath] change selected")
+            axios
+                .get(this.selected)
+                .then(res => res.data)
                 .then(res => {
-                    console.log(res)
+                    store.commit({
+                        type: 'setArguments',
+                        arguments: res.arguments,
+                    })
+                    this.arguments = res.arguments
                 })
-            return this.selected + " | aiueo"
+                //.then(res => (this.response = res))
         }
+    },
+    components: {
+        ArgumentItem,
     }
 }
 </script>
